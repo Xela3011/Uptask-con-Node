@@ -1,0 +1,26 @@
+{
+  "name": "uptask",
+  "version": "1.0.0",
+  "description": "Proyecto Uptask con Node y MVC",
+  "main": "index.js",
+  "scripts": {
+    "Start": "nodemon ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xela3011/Uptask-con-Node.git"
+  },
+  "author": "Alexander Batista",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Xela3011/Uptask-con-Node/issues"
+  },
+  "homepage": "https://github.com/Xela3011/Uptask-con-Node#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pug": "^3.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}

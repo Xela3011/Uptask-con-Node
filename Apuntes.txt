@@ -1,0 +1,12 @@
+Hay dos tipos de dependencias: las dependencias por del proyecto y dependencias de desarrollo
+
+Nodemon escanea el código y si hay cambios reinicia el servidor, para tener los cambios disponi
+bles
+
+No puedo hacer dos instancias de express, si voy a utilizar la carpeta rutas, debo utilizar
+el método Router de express
+
+los template engines es la pieza de código que nos permite crear plantillas de  html para 
+renderizar junto con los datos y finalmente desplegar en el navegador
+
+los pricipales template engines son pug, handlebars y EJS
