@@ -10,3 +10,10 @@ los template engines es la pieza de código que nos permite crear plantillas de 
 renderizar junto con los datos y finalmente desplegar en el navegador
 
 los pricipales template engines son pug, handlebars y EJS
+
+en pug se puede usar extends al principio de una vista para
+utilizar otra como layout. La sintaxis Block en pug permite
+definir qué cosas pueden cambiar en la vista que llama al layout
+
+Se utiliza una carpeta llamada public para colocar nuestros
+archicos css y javascript del site

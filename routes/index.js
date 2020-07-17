@@ -7,6 +7,10 @@ const proyectosController = require("../controllers/proyectosController");
 module.exports = function () {
     //ruta para el home
     router.get('/', proyectosController.proyectosHome); // es parte del middleware de express
+
+    router.get('/nosotros', (req, res) => {
+        res.render('nosotros')
+    })
     return router;
 }
 
