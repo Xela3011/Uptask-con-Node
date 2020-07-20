@@ -14,17 +14,15 @@ html(lang="en")
         main.contenedor
             aside.contenedor-proyectos
                 .panel.crear-proyecto
-                    a(href="/nuevo-proyecto" class="boton") Nuevo Proyecto
+                    a(href="/nuevo-proyecto" class="boton")= Nuevo Proyecto
                         span +
                 .panel.lista-proyectos
                     h2 Proyectos
                     ul#proyectos.proyectos
-                        li
-                            a(href="#") Diseño de tienda virtual
-                        li
-                            a(href="#") Diseño de Logotipo
-                        li
-                            a(href="#") Diseño de Nuevo Site
+                        if(proyectos.length)
+                            each proyecto in proyectos
+                                li 
+                                    a(href="#")= proyecto.nombre
 
             block content
 

@@ -1,9 +1,12 @@
 const Proyectos = require('../models/Proyectos');
 
+
 exports.proyectosHome = (req, res) => {
+    const proyectos = await Proyectos.findAll();
     res.render("index",
         {
-            nombrePagina: 'Proyectos'
+            nombrePagina: 'Proyectos',
+            proyectos
         });
 }
 

@@ -21,7 +21,9 @@
     "express-validator": "^6.6.0",
     "mysql2": "^2.1.0",
     "pug": "^3.0.0",
-    "sequelize": "^6.3.3"
+    "sequelize": "^6.3.3",
+    "shortid": "^2.2.15",
+    "slug": "^3.3.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"

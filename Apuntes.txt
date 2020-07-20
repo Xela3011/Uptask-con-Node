@@ -22,3 +22,4 @@ cuando se conecte al servidor se puede utilizar .sync en lugar
 de .authenticate para agregar el modelo.ç
 
 No se usa express-validator en el controller, sino en el router
+Hook es una función que corre en determinado tiempo
