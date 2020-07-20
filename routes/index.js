@@ -18,6 +18,8 @@ module.exports = function () {
     router.post('/nuevo-proyecto',
         body('nombre').not().isEmpty().trim().escape(),
         proyectosController.nuevoProyecto)
+
+    router.get('/proyectos/:url', proyectosController.proyectoPorUrl);
     return router;
 }
 

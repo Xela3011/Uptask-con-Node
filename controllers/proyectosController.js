@@ -1,7 +1,7 @@
 const Proyectos = require('../models/Proyectos');
 
 
-exports.proyectosHome = (req, res) => {
+exports.proyectosHome = async (req, res) => {
     const proyectos = await Proyectos.findAll();
     res.render("index",
         {
@@ -10,9 +10,11 @@ exports.proyectosHome = (req, res) => {
         });
 }
 
-exports.formularioProyecto = (req, res) => {
+exports.formularioProyecto = async (req, res) => {
+    const proyectos = await Proyectos.findAll();
     res.render('nuevoProyecto', {
-        nombrePagina: 'Nuevo Proyecto'
+        nombrePagina: 'Nuevo Proyecto',
+        proyectos
     })
 }
 
@@ -31,9 +33,11 @@ exports.nuevoProyecto = async (req, res) => {
     }
     // si hay errores
     if (errores.length > 0) {
+        const proyectos = await Proyectos.findAll();
         res.render('nuevoProyecto', {
             nombrePagina: 'Nuevo Proyecto',
-            errores
+            errores,
+            proyectos
         })
     } else {
         //no hay errores
@@ -43,4 +47,20 @@ exports.nuevoProyecto = async (req, res) => {
         // .catch(error => console.log(error));
         res.redirect('/');
     }
+}
+
+exports.proyectoPorUrl = async (req, res, next) => {
+    const proyectos = await Proyectos.findAll();
+    const proyecto = await Proyectos.findOne({
+        where: {
+            url: req.params.url
+        }
+    })
+
+    if (!proyecto) return next();
+    res.render('tareas', {
+        nombrePagina: 'Tareas del Proyecto',
+        proyectos,
+        proyecto
+    })
 }
