@@ -49,6 +49,24 @@ exports.nuevoProyecto = async (req, res) => {
     }
 }
 
+exports.proyectoPorUrl = async (req, res, next) => {
+    const proyectosPromise = await Proyectos.findAll();
+    const proyectoPromise = await Proyectos.findOne({
+        where: {
+            url: req.params.url
+        }
+    })
+    const [proyectos, proyecto] = await
+        Promise.all([proyectosPromise, proyectoPromise])
+
+    if (!proyecto) return next();
+    res.render('tareas', {
+        nombrePagina: 'Tareas del Proyecto',
+        proyectos,
+        proyecto
+    })
+}
+
 exports.actualizarProyecto = async (req, res) => {
     //Enviar a la consola lo que el cliente escriba
     //console.log(req.body);
@@ -84,24 +102,6 @@ exports.actualizarProyecto = async (req, res) => {
     }
 }
 
-exports.proyectoPorUrl = async (req, res, next) => {
-    const proyectosPromise = await Proyectos.findAll();
-    const proyectoPromise = await Proyectos.findOne({
-        where: {
-            url: req.params.url
-        }
-    })
-    const [proyectos, proyecto] = await
-        Promise.all([proyectosPromise, proyectoPromise])
-
-    if (!proyecto) return next();
-    res.render('tareas', {
-        nombrePagina: 'Tareas del Proyecto',
-        proyectos,
-        proyecto
-    })
-}
-
 exports.formularioEditar = async (req, res) => {
     const proyectosPromise = Proyectos.findAll();
     const proyectoPromise = Proyectos.findOne({
@@ -118,4 +118,15 @@ exports.formularioEditar = async (req, res) => {
         proyectos,
         proyecto
     });
+}
+exports.eliminarProyecto = async (req, res, next) => {
+    //se puede utilizar query o params para ver lo que trae un req
+    //console.log(req.params);
+    const { urlProyecto } = req.query;
+    console.log(urlProyecto);
+    const resultado = await Proyectos.destroy({ where: { url: urlProyecto } });
+    if (!resultado) {
+        return next();
+    }
+    res.status(200).send('Proyecto eliminado correctamente');
 }

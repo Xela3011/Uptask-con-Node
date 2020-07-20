@@ -11,19 +11,24 @@ renderizar junto con los datos y finalmente desplegar en el navegador
 
 los pricipales template engines son pug, handlebars y EJS
 
-en pug se puede usar extends al principio de una vista para
-utilizar otra como layout. La sintaxis Block en pug permite
-definir qué cosas pueden cambiar en la vista que llama al layout
+en pug se puede usar extends al principio de una vista para utilizar otra como layout. 
+La sintaxis Block en pug permite definir qué cosas pueden cambiar en la vista que llama al layout
 
-Se utiliza una carpeta llamada public para colocar nuestros
-archicos css y javascript del site
+Se utiliza una carpeta llamada public para colocar nuestros archicos css y javascript del site
 
-cuando se conecte al servidor se puede utilizar .sync en lugar
-de .authenticate para agregar el modelo.ç
+cuando se conecte al servidor se puede utilizar .sync en lugar de .authenticate para agregar
+el modelo.
 
 No se usa express-validator en el controller, sino en el router
+
 Hook es una función que corre en determinado tiempo
 
-Cuando en un controller se necesitan hacer dos consultas
-independientes se usan promises en lugar de await, para 
-mejorar el performance
+Cuando en un controller se necesitan hacer dos consultas independientes se usan promises 
+en lugar de await, para mejorar el performance
+
+El watch de Webpack revisa cada vez que hay un cambio en los archivos especificados para correr
+nuevamente el bundle.
+
+concurrently se usa para que puedan correr varios scripts en package.json
+
+e.target.dataset es la forma en la que se accede a atributos personalizados en node

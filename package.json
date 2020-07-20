@@ -4,7 +4,9 @@
   "description": "Proyecto Uptask con Node y MVC",
   "main": "index.js",
   "scripts": {
-    "Start": "nodemon ./index.js"
+    "dev": "nodemon ./index.js",
+    "start": "concurrently \"npm run dev\" \"npm run watch\"",
+    "watch": "webpack --w --mode development"
   },
   "repository": {
     "type": "git",
@@ -17,6 +19,7 @@
   },
   "homepage": "https://github.com/Xela3011/Uptask-con-Node#readme",
   "dependencies": {
+    "axios": "^0.19.2",
     "concurrently": "^5.2.0",
     "express": "^4.17.1",
     "express-validator": "^6.6.0",
@@ -24,13 +27,15 @@
     "pug": "^3.0.0",
     "sequelize": "^6.3.3",
     "shortid": "^2.2.15",
-    "slug": "^3.3.2"
+    "slug": "^3.3.2",
+    "sweetalert2": "^9.17.0"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
     "babel-loader": "^8.1.0",
     "nodemon": "^2.0.4",
-    "webpack": "^4.43.0"
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
   }
 }
