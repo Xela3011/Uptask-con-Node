@@ -11,6 +11,9 @@ module.exports = function () {
     router.get('/nosotros', (req, res) => {
         res.render('nosotros')
     })
+
+    router.get('/nuevo-proyecto', proyectosController.formularioProyecto)
+    router.post('/nuevo-proyecto', proyectosController.nuevoProyecto)
     return router;
 }
 
