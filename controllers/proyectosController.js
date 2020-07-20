@@ -19,7 +19,8 @@ exports.nuevoProyecto = async (req, res) => {
 
     //validar que tengamos algo en el input
     //destructuring in JS
-    const { nombre } = req.body;
+    //const { nombre } = req.body;
+    const nombre = req.body.nombre;
 
     let errores = [];
     if (!nombre) {
