@@ -23,3 +23,7 @@ de .authenticate para agregar el modelo.ç
 
 No se usa express-validator en el controller, sino en el router
 Hook es una función que corre en determinado tiempo
+
+Cuando en un controller se necesitan hacer dos consultas
+independientes se usan promises en lugar de await, para 
+mejorar el performance

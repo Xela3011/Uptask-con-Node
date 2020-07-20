@@ -42,7 +42,42 @@ exports.nuevoProyecto = async (req, res) => {
     } else {
         //no hay errores
         //Insertar en la BD
-        const proyecto = await Proyectos.create({ nombre });
+        await Proyectos.create({ nombre });
+        // .then(() => console.log('Insertado correctamente'))
+        // .catch(error => console.log(error));
+        res.redirect('/');
+    }
+}
+
+exports.actualizarProyecto = async (req, res) => {
+    //Enviar a la consola lo que el cliente escriba
+    //console.log(req.body);
+
+    //validar que tengamos algo en el input
+    //destructuring in JS
+    //const { nombre } = req.body;
+    const nombre = req.body.nombre;
+
+    let errores = [];
+    if (!nombre) {
+        errores.push({ "texto": "El Nombre del proyecto es obligatorio" });
+    }
+    // si hay errores
+    if (errores.length > 0) {
+        const proyectos = await Proyectos.findAll();
+        res.render('nuevoProyecto', {
+            nombrePagina: 'Nuevo Proyecto',
+            errores,
+            proyectos
+        })
+    } else {
+        //no hay errores
+        //Insertar en la BD
+        await Proyectos.update(
+            { nombre: nombre },
+            { where: { id: req.params.id } }
+
+        );
         // .then(() => console.log('Insertado correctamente'))
         // .catch(error => console.log(error));
         res.redirect('/');
@@ -50,12 +85,14 @@ exports.nuevoProyecto = async (req, res) => {
 }
 
 exports.proyectoPorUrl = async (req, res, next) => {
-    const proyectos = await Proyectos.findAll();
-    const proyecto = await Proyectos.findOne({
+    const proyectosPromise = await Proyectos.findAll();
+    const proyectoPromise = await Proyectos.findOne({
         where: {
             url: req.params.url
         }
     })
+    const [proyectos, proyecto] = await
+        Promise.all([proyectosPromise, proyectoPromise])
 
     if (!proyecto) return next();
     res.render('tareas', {
@@ -63,4 +100,22 @@ exports.proyectoPorUrl = async (req, res, next) => {
         proyectos,
         proyecto
     })
+}
+
+exports.formularioEditar = async (req, res) => {
+    const proyectosPromise = Proyectos.findAll();
+    const proyectoPromise = Proyectos.findOne({
+        where: {
+            id: req.params.id
+        }
+    })
+
+    const [proyectos, proyecto] = await
+        Promise.all([proyectosPromise, proyectoPromise])
+
+    res.render('nuevoProyecto', {
+        nombrePagina: 'Editar Proyecto',
+        proyectos,
+        proyecto
+    });
 }
