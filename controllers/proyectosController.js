@@ -67,6 +67,23 @@ exports.proyectoPorUrl = async (req, res, next) => {
     })
 }
 
+exports.formularioEditar = async (req, res) => {
+    const proyectosPromise = Proyectos.findAll();
+    const proyectoPromise = Proyectos.findOne({
+        where: {
+            id: req.params.id
+        }
+    })
+
+    const [proyectos, proyecto] = await
+        Promise.all([proyectosPromise, proyectoPromise])
+
+    res.render('nuevoProyecto', {
+        nombrePagina: 'Editar Proyecto',
+        proyectos,
+        proyecto
+    });
+}
 exports.actualizarProyecto = async (req, res) => {
     //Enviar a la consola lo que el cliente escriba
     //console.log(req.body);
@@ -100,24 +117,6 @@ exports.actualizarProyecto = async (req, res) => {
         // .catch(error => console.log(error));
         res.redirect('/');
     }
-}
-
-exports.formularioEditar = async (req, res) => {
-    const proyectosPromise = Proyectos.findAll();
-    const proyectoPromise = Proyectos.findOne({
-        where: {
-            id: req.params.id
-        }
-    })
-
-    const [proyectos, proyecto] = await
-        Promise.all([proyectosPromise, proyectoPromise])
-
-    res.render('nuevoProyecto', {
-        nombrePagina: 'Editar Proyecto',
-        proyectos,
-        proyecto
-    });
 }
 exports.eliminarProyecto = async (req, res, next) => {
     //se puede utilizar query o params para ver lo que trae un req
