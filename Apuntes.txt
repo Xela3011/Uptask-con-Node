@@ -32,3 +32,8 @@ nuevamente el bundle.
 concurrently se usa para que puedan correr varios scripts en package.json
 
 e.target.dataset es la forma en la que se accede a atributos personalizados en node
+
+el verbo patch de HTTP se usa para cuando solamente se quiere cambiar una pequeña porción de
+código
+
+Cuando se envia un patch se accede a los datos con params, query no funciona
